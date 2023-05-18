@@ -18,6 +18,14 @@
             android:id="@+id/menuFragment_to_CuboidFragment"
             app:destination="@id/cuboidFragment"/>
 
+        <action
+            android:id="@+id/menuFragment_to_ArithmeticFragment"
+            app:destination="@id/arithmeticFragment"/>
+
+        <action
+            android:id="@+id/menuFragment_to_GeometryFragment"
+            app:destination="@id/geometryFragment"/>
+
     </fragment>
 
     <fragment
@@ -29,5 +37,15 @@
         android:id="@+id/cuboidFragment"
         android:name="com.pamungkaswira.kaltika.ui.cuboid.CuboidFragment"
         tools:layout="@layout/fragment_cuboid"/>
+
+    <fragment
+        android:id="@+id/arithmeticFragment"
+        android:name="com.pamungkaswira.kaltika.ui.arithmetic.ArithmeticFragment"
+        tools:layout="@layout/fragment_arithmetic"/>
+
+    <fragment
+        android:id="@+id/geometryFragment"
+        android:name="com.pamungkaswira.kaltika.ui.geometry.GeometryFragment"
+        tools:layout="@layout/fragment_geometry"/>
 
 </navigation>

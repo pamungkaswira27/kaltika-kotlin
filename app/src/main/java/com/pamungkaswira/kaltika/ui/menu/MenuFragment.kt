@@ -31,5 +31,13 @@ class MenuFragment : Fragment() {
         binding.openCuboidImageView.setOnClickListener {
             it.findNavController().navigate(R.id.menuFragment_to_CuboidFragment)
         }
+
+        binding.openArithmeticImageView.setOnClickListener {
+            it.findNavController().navigate(R.id.menuFragment_to_ArithmeticFragment)
+        }
+
+        binding.openGeometryImageView.setOnClickListener {
+            it.findNavController().navigate(R.id.menuFragment_to_GeometryFragment)
+        }
     }
 }
