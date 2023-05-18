@@ -9,13 +9,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pamungkaswira.kaltika.R
 import com.pamungkaswira.kaltika.databinding.FragmentGeometryBinding
-import com.pamungkaswira.kaltika.model.GeometryViewModel
+import com.pamungkaswira.kaltika.db.HistoryDb
+import com.pamungkaswira.kaltika.model.geometry.GeometryViewModel
+import com.pamungkaswira.kaltika.model.geometry.GeometryViewModelFactory
 
 class GeometryFragment : Fragment() {
     private lateinit var binding: FragmentGeometryBinding
 
     private val viewModel: GeometryViewModel by lazy {
-        ViewModelProvider(requireActivity())[GeometryViewModel::class.java]
+        val db = HistoryDb.getInstance(requireContext())
+        val factory = GeometryViewModelFactory(db.dao)
+        ViewModelProvider(this, factory)[GeometryViewModel::class.java]
     }
 
     override fun onCreateView(

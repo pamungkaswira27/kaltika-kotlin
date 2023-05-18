@@ -9,13 +9,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pamungkaswira.kaltika.R
 import com.pamungkaswira.kaltika.databinding.FragmentArithmeticBinding
-import com.pamungkaswira.kaltika.model.ArithmeticViewModel
+import com.pamungkaswira.kaltika.db.HistoryDb
+import com.pamungkaswira.kaltika.model.arithmetic.ArithmeticViewModel
+import com.pamungkaswira.kaltika.model.arithmetic.ArithmeticViewModelFactory
 
 class ArithmeticFragment : Fragment() {
     private lateinit var binding: FragmentArithmeticBinding
 
     private val viewModel: ArithmeticViewModel by lazy {
-        ViewModelProvider(requireActivity())[ArithmeticViewModel::class.java]
+        val db = HistoryDb.getInstance(requireContext())
+        val factory = ArithmeticViewModelFactory(db.dao)
+        ViewModelProvider(this, factory)[ArithmeticViewModel::class.java]
     }
 
     override fun onCreateView(

@@ -26,6 +26,10 @@
             android:id="@+id/menuFragment_to_GeometryFragment"
             app:destination="@id/geometryFragment"/>
 
+        <action
+            android:id="@+id/menuFragment_to_HistoryFragment"
+            app:destination="@id/historyFragment"/>
+
     </fragment>
 
     <fragment
@@ -47,5 +51,10 @@
         android:id="@+id/geometryFragment"
         android:name="com.pamungkaswira.kaltika.ui.geometry.GeometryFragment"
         tools:layout="@layout/fragment_geometry"/>
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.pamungkaswira.kaltika.ui.history.HistoryFragment"
+        tools:layout="@layout/fragment_history"/>
 
 </navigation>

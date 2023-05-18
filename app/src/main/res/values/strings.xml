@@ -38,4 +38,10 @@
     <string name="bangun_ruang">Bangun Ruang</string>
     <string name="barisan_deret">Barisan &amp; Deret</string>
     <string name="share_template">Download Aplikasi Kaltika di Playstore.</string>
+    <string name="data_history_kosong">Belum Ada Histori.</string>
+    <string name="data_history">%.1f</string>
+    <string name="delete_confirmation">Yakin ingin menghapus data?</string>
+    <string name="clear_confirmation">Yakin ingin menghapus semua data?</string>
+    <string name="yes_confirmation">Yakin</string>
+    <string name="no_confirmation">Tidak</string>
 </resources>

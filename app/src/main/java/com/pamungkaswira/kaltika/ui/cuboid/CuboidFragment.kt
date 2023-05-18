@@ -9,13 +9,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pamungkaswira.kaltika.R
 import com.pamungkaswira.kaltika.databinding.FragmentCuboidBinding
-import com.pamungkaswira.kaltika.model.CuboidViewModel
+import com.pamungkaswira.kaltika.db.HistoryDb
+import com.pamungkaswira.kaltika.model.cuboid.CuboidViewModel
+import com.pamungkaswira.kaltika.model.cuboid.CuboidViewModelFactory
 
 class CuboidFragment : Fragment() {
     private lateinit var binding: FragmentCuboidBinding
 
     private val viewModel: CuboidViewModel by lazy {
-        ViewModelProvider(requireActivity())[CuboidViewModel::class.java]
+        val db = HistoryDb.getInstance(requireContext())
+        val factory = CuboidViewModelFactory(db.dao)
+        ViewModelProvider(this, factory)[CuboidViewModel::class.java]
     }
 
     override fun onCreateView(
