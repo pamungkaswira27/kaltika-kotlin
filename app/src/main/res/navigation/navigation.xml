@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/menuFragment">
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.pamungkaswira.kaltika.ui.menu.MenuFragment"
+        tools:layout="@layout/fragment_menu">
+
+        <action
+            android:id="@+id/menuFragment_to_CubeFragment"
+            app:destination="@id/cubeFragment"/>
+
+        <action
+            android:id="@+id/menuFragment_to_CuboidFragment"
+            app:destination="@id/cuboidFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/cubeFragment"
+        android:name="com.pamungkaswira.kaltika.ui.cube.CubeFragment"
+        tools:layout="@layout/fragment_cube"/>
+
+    <fragment
+        android:id="@+id/cuboidFragment"
+        android:name="com.pamungkaswira.kaltika.ui.cuboid.CuboidFragment"
+        tools:layout="@layout/fragment_cuboid"/>
+
+</navigation>

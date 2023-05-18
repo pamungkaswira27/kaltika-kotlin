@@ -1,4 +1,4 @@
-package com.pamungkaswira.kaltika.ui
+package com.pamungkaswira.kaltika.ui.cube
 
 import android.os.Bundle
 import android.view.LayoutInflater

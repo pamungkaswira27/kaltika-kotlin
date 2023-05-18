@@ -16,4 +16,7 @@
     <string name="header_hasil_volume">Hasil Volume</string>
     <string name="hasil_luas_permukaan">%.1f cm&#xB2;</string>
     <string name="hasil_volume">%.1f cm&#xB3;</string>
+    <string name="kubus_menu_name">Kubus</string>
+    <string name="balok_menu_name">Balok</string>
+    <string name="bangun_ruang">Bangun Ruang</string>
 </resources>
