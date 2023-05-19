@@ -2,9 +2,11 @@ package com.pamungkaswira.kaltika.ui.history
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pamungkaswira.kaltika.R
 import com.pamungkaswira.kaltika.databinding.FragmentHistoryBinding
@@ -46,6 +48,22 @@ class HistoryFragment : Fragment() {
             binding.emptyTextView.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
             historyAdapter.submitList(it)
         }
+
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val dataHistory = viewModel.data.value?.get(viewHolder.adapterPosition)!!
+                viewModel.deleteData(dataHistory)
+                Toast.makeText(requireContext(), "Data History Terhapus!", Toast.LENGTH_LONG).show()
+            }
+        }).attachToRecyclerView(binding.historyRecyclerView)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

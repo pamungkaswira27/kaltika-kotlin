@@ -41,18 +41,6 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.5"/>
 
-        <ImageView
-            android:id="@+id/deleteImageView"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/clear"
-            android:contentDescription="@null"
-            app:tint="@color/oxford_blue"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
