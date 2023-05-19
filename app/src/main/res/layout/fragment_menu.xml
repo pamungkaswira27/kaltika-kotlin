@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.menu.MenuFragment">
 
     <ImageView
         android:id="@+id/toggleViewImageView"
@@ -17,284 +18,321 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <!-- Kubus -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cubeCardView"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         app:layout_constraintTop_toBottomOf="@id/toggleViewImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/menuRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp">
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/menu_item"/>
 
-            <ImageView
-                android:id="@+id/cubeIconImageView"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/cube"
-                android:contentDescription="@null"
-                app:tint="@color/oxford_blue"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cubeNameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/kubus_menu_name"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/cubeGuideLine"
-                app:layout_constraintStart_toEndOf="@id/cubeIconImageView"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bangun_ruang"
-                android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/cubeGuideLine"
-                app:layout_constraintStart_toStartOf="@id/cubeNameTextView"/>
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/cubeGuideLine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5"/>
-
-            <ImageView
-                android:id="@+id/openCubeImageView"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/right"
-                android:contentDescription="@null"
-                app:tint="@color/oxford_blue"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Balok -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cuboidCardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/cubeCardView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp">
-
-            <ImageView
-                android:id="@+id/cuboidIconImageView"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/cuboid"
-                android:contentDescription="@null"
-                app:tint="@color/oxford_blue"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cuboidNameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/balok_menu_name"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/cuboidGuideLine"
-                app:layout_constraintStart_toEndOf="@id/cuboidIconImageView"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bangun_ruang"
-                android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/cuboidGuideLine"
-                app:layout_constraintStart_toStartOf="@id/cuboidNameTextView"/>
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/cuboidGuideLine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5"/>
-
-            <ImageView
-                android:id="@+id/openCuboidImageView"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/right"
-                android:contentDescription="@null"
-                app:tint="@color/oxford_blue"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Aritmatika -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/arithmeticCardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/cuboidCardView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp">
-
-            <ImageView
-                android:id="@+id/arithmeticIconImageView"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@null"
-                android:contentDescription="@null"
-                app:tint="@color/oxford_blue"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/arithmeticNameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/aritmatika_menu_name"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/arithmeticGuideLine"
-                app:layout_constraintStart_toEndOf="@id/arithmeticIconImageView"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/barisan_deret"
-                android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/arithmeticGuideLine"
-                app:layout_constraintStart_toStartOf="@id/arithmeticNameTextView"/>
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/arithmeticGuideLine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5"/>
-
-            <ImageView
-                android:id="@+id/openArithmeticImageView"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/right"
-                android:contentDescription="@null"
-                app:tint="@color/oxford_blue"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Geometri -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/geometryCardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/arithmeticCardView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp">
-
-            <ImageView
-                android:id="@+id/geometryIconImageView"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@null"
-                android:contentDescription="@null"
-                app:tint="@color/oxford_blue"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/geometryNameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/geometri_menu_name"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/geometryGuideLine"
-                app:layout_constraintStart_toEndOf="@id/geometryIconImageView"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/barisan_deret"
-                android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/geometryGuideLine"
-                app:layout_constraintStart_toStartOf="@id/geometryNameTextView"/>
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/geometryGuideLine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5"/>
-
-            <ImageView
-                android:id="@+id/openGeometryImageView"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/right"
-                android:contentDescription="@null"
-                app:tint="@color/oxford_blue"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/toggleViewImageView"-->
+<!--        android:layout_width="32dp"-->
+<!--        android:layout_height="32dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:src="@drawable/grid"-->
+<!--        android:contentDescription="@null"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"/>-->
+
+<!--    &lt;!&ndash; Kubus &ndash;&gt;-->
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:id="@+id/cubeCardView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/toggleViewImageView"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/cubeIconImageView"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:src="@drawable/cube"-->
+<!--                android:contentDescription="@null"-->
+<!--                app:tint="@color/oxford_blue"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"/>-->
+
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:id="@+id/cubeNameTextView"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:text="@string/kubus_menu_name"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toTopOf="@id/cubeGuideLine"-->
+<!--                app:layout_constraintStart_toEndOf="@id/cubeIconImageView"/>-->
+
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/bangun_ruang"-->
+<!--                android:textSize="14sp"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/cubeGuideLine"-->
+<!--                app:layout_constraintStart_toStartOf="@id/cubeNameTextView"/>-->
+
+<!--            <androidx.constraintlayout.widget.Guideline-->
+<!--                android:id="@+id/cubeGuideLine"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layout_constraintGuide_percent="0.5"/>-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/openCubeImageView"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:src="@drawable/right"-->
+<!--                android:contentDescription="@null"-->
+<!--                app:tint="@color/oxford_blue"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"/>-->
+
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    </com.google.android.material.card.MaterialCardView>-->
+
+<!--    &lt;!&ndash; Balok &ndash;&gt;-->
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:id="@+id/cuboidCardView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/cubeCardView"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/cuboidIconImageView"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:src="@drawable/cuboid"-->
+<!--                android:contentDescription="@null"-->
+<!--                app:tint="@color/oxford_blue"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"/>-->
+
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:id="@+id/cuboidNameTextView"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:text="@string/balok_menu_name"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toTopOf="@id/cuboidGuideLine"-->
+<!--                app:layout_constraintStart_toEndOf="@id/cuboidIconImageView"/>-->
+
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/bangun_ruang"-->
+<!--                android:textSize="14sp"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/cuboidGuideLine"-->
+<!--                app:layout_constraintStart_toStartOf="@id/cuboidNameTextView"/>-->
+
+<!--            <androidx.constraintlayout.widget.Guideline-->
+<!--                android:id="@+id/cuboidGuideLine"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layout_constraintGuide_percent="0.5"/>-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/openCuboidImageView"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:src="@drawable/right"-->
+<!--                android:contentDescription="@null"-->
+<!--                app:tint="@color/oxford_blue"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"/>-->
+
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    </com.google.android.material.card.MaterialCardView>-->
+
+<!--    &lt;!&ndash; Aritmatika &ndash;&gt;-->
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:id="@+id/arithmeticCardView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/cuboidCardView"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/arithmeticIconImageView"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:src="@null"-->
+<!--                android:contentDescription="@null"-->
+<!--                app:tint="@color/oxford_blue"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"/>-->
+
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:id="@+id/arithmeticNameTextView"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:text="@string/aritmatika_menu_name"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toTopOf="@id/arithmeticGuideLine"-->
+<!--                app:layout_constraintStart_toEndOf="@id/arithmeticIconImageView"/>-->
+
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/barisan_deret"-->
+<!--                android:textSize="14sp"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/arithmeticGuideLine"-->
+<!--                app:layout_constraintStart_toStartOf="@id/arithmeticNameTextView"/>-->
+
+<!--            <androidx.constraintlayout.widget.Guideline-->
+<!--                android:id="@+id/arithmeticGuideLine"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layout_constraintGuide_percent="0.5"/>-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/openArithmeticImageView"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:src="@drawable/right"-->
+<!--                android:contentDescription="@null"-->
+<!--                app:tint="@color/oxford_blue"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"/>-->
+
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    </com.google.android.material.card.MaterialCardView>-->
+
+<!--    &lt;!&ndash; Geometri &ndash;&gt;-->
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:id="@+id/geometryCardView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/arithmeticCardView"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/geometryIconImageView"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:src="@null"-->
+<!--                android:contentDescription="@null"-->
+<!--                app:tint="@color/oxford_blue"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"/>-->
+
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:id="@+id/geometryNameTextView"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:text="@string/geometri_menu_name"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toTopOf="@id/geometryGuideLine"-->
+<!--                app:layout_constraintStart_toEndOf="@id/geometryIconImageView"/>-->
+
+<!--            <com.google.android.material.textview.MaterialTextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/barisan_deret"-->
+<!--                android:textSize="14sp"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/geometryGuideLine"-->
+<!--                app:layout_constraintStart_toStartOf="@id/geometryNameTextView"/>-->
+
+<!--            <androidx.constraintlayout.widget.Guideline-->
+<!--                android:id="@+id/geometryGuideLine"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layout_constraintGuide_percent="0.5"/>-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/openGeometryImageView"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:src="@drawable/right"-->
+<!--                android:contentDescription="@null"-->
+<!--                app:tint="@color/oxford_blue"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"/>-->
+
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    </com.google.android.material.card.MaterialCardView>-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

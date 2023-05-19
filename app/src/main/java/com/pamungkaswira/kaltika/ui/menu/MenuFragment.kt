@@ -25,21 +25,25 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.openCubeImageView.setOnClickListener {
-            it.findNavController().navigate(R.id.menuFragment_to_CubeFragment)
+        with(binding.menuRecyclerView) {
+            adapter = MenuAdapter(getMenuData())
+            setHasFixedSize(true)
         }
-
-        binding.openCuboidImageView.setOnClickListener {
-            it.findNavController().navigate(R.id.menuFragment_to_CuboidFragment)
-        }
-
-        binding.openArithmeticImageView.setOnClickListener {
-            it.findNavController().navigate(R.id.menuFragment_to_ArithmeticFragment)
-        }
-
-        binding.openGeometryImageView.setOnClickListener {
-            it.findNavController().navigate(R.id.menuFragment_to_GeometryFragment)
-        }
+//        binding.openCubeImageView.setOnClickListener {
+//            it.findNavController().navigate(R.id.menuFragment_to_CubeFragment)
+//        }
+//
+//        binding.openCuboidImageView.setOnClickListener {
+//            it.findNavController().navigate(R.id.menuFragment_to_CuboidFragment)
+//        }
+//
+//        binding.openArithmeticImageView.setOnClickListener {
+//            it.findNavController().navigate(R.id.menuFragment_to_ArithmeticFragment)
+//        }
+//
+//        binding.openGeometryImageView.setOnClickListener {
+//            it.findNavController().navigate(R.id.menuFragment_to_GeometryFragment)
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -65,5 +69,14 @@ class MenuFragment : Fragment() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun getMenuData() : List<MenuData> {
+        return listOf(
+            MenuData(R.drawable.cube, "Kubus", "Bangun Ruang"),
+            MenuData(R.drawable.cuboid, "Balok", "Bangun Ruang"),
+            MenuData(R.drawable.none, "Aritmatika", "Barisan & Deret"),
+            MenuData(R.drawable.none, "Geometri", "Barisan & Deret"),
+        )
     }
 }
