@@ -5,12 +5,13 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.pamungkaswira.kaltika.R
-import com.pamungkaswira.kaltika.databinding.MenuItemBinding
+import com.pamungkaswira.kaltika.databinding.GridMenuItemBinding
+import com.pamungkaswira.kaltika.databinding.ListMenuItemBinding
 
-class MenuAdapter : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
+class GridMenuAdapter : RecyclerView.Adapter<GridMenuAdapter.ViewHolder>() {
     private val menuData = mutableListOf<MenuData>()
 
-    class ViewHolder(private val binding: MenuItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: GridMenuItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(menuData: MenuData) = with(binding) {
             menuImageView.setImageResource(menuData.imageId)
             menuNameTextView.text = menuData.name
@@ -33,7 +34,7 @@ class MenuAdapter : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = MenuItemBinding.inflate(inflater, parent, false)
+        val binding = GridMenuItemBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
 

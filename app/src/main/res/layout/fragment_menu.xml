@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/menu_item"/>
+            tools:listitem="@layout/list_menu_item"/>
 
     </FrameLayout>
 

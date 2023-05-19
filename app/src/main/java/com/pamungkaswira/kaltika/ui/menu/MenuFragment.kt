@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +19,8 @@ import kotlinx.coroutines.launch
 
 class MenuFragment : Fragment() {
     private lateinit var binding: FragmentMenuBinding
-    private lateinit var menuAdapter: MenuAdapter
+    private lateinit var listMenuAdapter: ListMenuAdapter
+    private lateinit var gridMenuAdapter: GridMenuAdapter
 
     private val viewModel: MenuViewModel by lazy {
         ViewModelProvider(this)[MenuViewModel::class.java]
@@ -39,11 +39,8 @@ class MenuFragment : Fragment() {
     ): View {
         binding = FragmentMenuBinding.inflate(layoutInflater, container, false)
 
-        menuAdapter = MenuAdapter()
-        with(binding.menuRecyclerView) {
-            adapter = menuAdapter
-            setHasFixedSize(true)
-        }
+        listMenuAdapter = ListMenuAdapter()
+        gridMenuAdapter = GridMenuAdapter()
 
         setHasOptionsMenu(true)
         return binding.root
@@ -54,12 +51,9 @@ class MenuFragment : Fragment() {
 
         layoutDataStore.preferenceFlow.asLiveData().observe(viewLifecycleOwner) {
             isLinearLayout = it
+            setAdapter()
             setLayout()
             setIcon()
-        }
-
-        viewModel.getData().observe(viewLifecycleOwner) {
-            menuAdapter.updateData(it)
         }
 
         binding.toggleViewImageView.setOnClickListener { toggleLayout() }
@@ -108,6 +102,20 @@ class MenuFragment : Fragment() {
     private fun toggleLayout() {
         lifecycleScope.launch {
             layoutDataStore.saveLayout(!isLinearLayout, requireContext())
+        }
+    }
+
+    private fun setAdapter() {
+        with(binding.menuRecyclerView) {
+            adapter = if (isLinearLayout) listMenuAdapter else gridMenuAdapter
+            setHasFixedSize(true)
+        }
+
+        viewModel.getData().observe(viewLifecycleOwner) {
+            if (isLinearLayout)
+                listMenuAdapter.updateData(it)
+            else
+                gridMenuAdapter.updateData(it)
         }
     }
 
