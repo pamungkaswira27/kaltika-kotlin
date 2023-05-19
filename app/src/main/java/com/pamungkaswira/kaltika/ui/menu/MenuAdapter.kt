@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pamungkaswira.kaltika.R
 import com.pamungkaswira.kaltika.databinding.MenuItemBinding
 
-class MenuAdapter(private val menuDatas: List<MenuData>) : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
+class MenuAdapter : RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
+    private val menuData = mutableListOf<MenuData>()
+
     class ViewHolder(private val binding: MenuItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(menuData: MenuData) = with(binding) {
             menuImageView.setImageResource(menuData.imageId)
@@ -36,10 +38,16 @@ class MenuAdapter(private val menuDatas: List<MenuData>) : RecyclerView.Adapter<
     }
 
     override fun getItemCount(): Int {
-        return menuDatas.size
+        return menuData.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(menuDatas[position])
+        holder.bind(menuData[position])
+    }
+
+    fun updateData(newData: List<MenuData>) {
+        menuData.clear()
+        menuData.addAll(newData)
+        notifyDataSetChanged()
     }
 }

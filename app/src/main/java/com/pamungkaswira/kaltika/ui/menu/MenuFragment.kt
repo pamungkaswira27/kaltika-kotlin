@@ -4,13 +4,33 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.pamungkaswira.kaltika.R
+import com.pamungkaswira.kaltika.data.SettingsDataStore
+import com.pamungkaswira.kaltika.data.dataStore
 import com.pamungkaswira.kaltika.databinding.FragmentMenuBinding
+import com.pamungkaswira.kaltika.model.menu.MenuViewModel
+import kotlinx.coroutines.launch
 
 class MenuFragment : Fragment() {
     private lateinit var binding: FragmentMenuBinding
+    private lateinit var menuAdapter: MenuAdapter
+
+    private val viewModel: MenuViewModel by lazy {
+        ViewModelProvider(this)[MenuViewModel::class.java]
+    }
+
+    private val layoutDataStore: SettingsDataStore by lazy {
+        SettingsDataStore(requireContext().dataStore)
+    }
+
+    private var isLinearLayout = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,6 +38,13 @@ class MenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMenuBinding.inflate(layoutInflater, container, false)
+
+        menuAdapter = MenuAdapter()
+        with(binding.menuRecyclerView) {
+            adapter = menuAdapter
+            setHasFixedSize(true)
+        }
+
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -25,10 +52,17 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(binding.menuRecyclerView) {
-            adapter = MenuAdapter(getMenuData())
-            setHasFixedSize(true)
+        layoutDataStore.preferenceFlow.asLiveData().observe(viewLifecycleOwner) {
+            isLinearLayout = it
+            setLayout()
+            setIcon()
         }
+
+        viewModel.getData().observe(viewLifecycleOwner) {
+            menuAdapter.updateData(it)
+        }
+
+        binding.toggleViewImageView.setOnClickListener { toggleLayout() }
 //        binding.openCubeImageView.setOnClickListener {
 //            it.findNavController().navigate(R.id.menuFragment_to_CubeFragment)
 //        }
@@ -71,12 +105,25 @@ class MenuFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun getMenuData() : List<MenuData> {
-        return listOf(
-            MenuData(R.drawable.cube, "Kubus", "Bangun Ruang"),
-            MenuData(R.drawable.cuboid, "Balok", "Bangun Ruang"),
-            MenuData(R.drawable.none, "Aritmatika", "Barisan & Deret"),
-            MenuData(R.drawable.none, "Geometri", "Barisan & Deret"),
-        )
+    private fun toggleLayout() {
+        lifecycleScope.launch {
+            layoutDataStore.saveLayout(!isLinearLayout, requireContext())
+        }
+    }
+
+    private fun setLayout() {
+        binding.menuRecyclerView.layoutManager = if (isLinearLayout)
+            LinearLayoutManager(context)
+        else
+            GridLayoutManager(context, 2)
+    }
+
+    private fun setIcon() {
+        if (isLinearLayout) {
+            binding.toggleViewImageView.setImageResource(R.drawable.grid)
+        }
+        else {
+            binding.toggleViewImageView.setImageResource(R.drawable.list)
+        }
     }
 }
