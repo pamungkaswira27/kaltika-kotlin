@@ -44,4 +44,5 @@
     <string name="clear_confirmation">Yakin ingin menghapus semua data?</string>
     <string name="yes_confirmation">Yakin</string>
     <string name="no_confirmation">Tidak</string>
+    <string name="koneksi_error">Koneksi error.</string>
 </resources>

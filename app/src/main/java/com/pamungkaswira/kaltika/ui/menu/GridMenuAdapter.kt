@@ -4,18 +4,23 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.pamungkaswira.kaltika.R
 import com.pamungkaswira.kaltika.databinding.GridMenuItemBinding
-import com.pamungkaswira.kaltika.databinding.ListMenuItemBinding
+import com.pamungkaswira.kaltika.network.FormulaApi
 
 class GridMenuAdapter : RecyclerView.Adapter<GridMenuAdapter.ViewHolder>() {
-    private val menuData = mutableListOf<MenuData>()
+    private val menuData = mutableListOf<Formula>()
 
     class ViewHolder(private val binding: GridMenuItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(menuData: MenuData) = with(binding) {
-            menuImageView.setImageResource(menuData.imageId)
-            menuNameTextView.text = menuData.name
-            categoryTextView.text = menuData.category
+        fun bind(formula: Formula) = with(binding) {
+            Glide.with(menuImageView.context)
+                .load(FormulaApi.getFormulaUrl(formula.imageId))
+                .error(R.drawable.broken_image)
+                .into(menuImageView)
+
+            menuNameTextView.text = formula.name
+            categoryTextView.text = formula.category
 
             root.setOnClickListener {
                 when {
@@ -46,7 +51,7 @@ class GridMenuAdapter : RecyclerView.Adapter<GridMenuAdapter.ViewHolder>() {
         holder.bind(menuData[position])
     }
 
-    fun updateData(newData: List<MenuData>) {
+    fun updateData(newData: List<Formula>) {
         menuData.clear()
         menuData.addAll(newData)
         notifyDataSetChanged()

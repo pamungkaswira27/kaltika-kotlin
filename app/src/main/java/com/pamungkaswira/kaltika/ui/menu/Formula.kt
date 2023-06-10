@@ -1,7 +1,7 @@
 package com.pamungkaswira.kaltika.ui.menu
 
-data class MenuData(
-    val imageId: Int,
+data class Formula(
+    val imageId: String,
     val name: String,
     val category: String
 )

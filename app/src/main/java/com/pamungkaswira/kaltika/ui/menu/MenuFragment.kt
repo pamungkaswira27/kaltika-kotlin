@@ -15,6 +15,7 @@ import com.pamungkaswira.kaltika.data.SettingsDataStore
 import com.pamungkaswira.kaltika.data.dataStore
 import com.pamungkaswira.kaltika.databinding.FragmentMenuBinding
 import com.pamungkaswira.kaltika.model.menu.MenuViewModel
+import com.pamungkaswira.kaltika.network.ApiStatus
 import kotlinx.coroutines.launch
 
 class MenuFragment : Fragment() {
@@ -57,6 +58,10 @@ class MenuFragment : Fragment() {
         }
 
         binding.toggleViewImageView.setOnClickListener { toggleLayout() }
+
+        viewModel.getStatus().observe(viewLifecycleOwner) {
+            updateProgress(it)
+        }
 //        binding.openCubeImageView.setOnClickListener {
 //            it.findNavController().navigate(R.id.menuFragment_to_CubeFragment)
 //        }
@@ -132,6 +137,21 @@ class MenuFragment : Fragment() {
         }
         else {
             binding.toggleViewImageView.setImageResource(R.drawable.list)
+        }
+    }
+
+    private fun updateProgress(status: ApiStatus) {
+        when (status) {
+            ApiStatus.LOADING -> {
+                binding.progressBar.visibility = View.VISIBLE
+            }
+            ApiStatus.SUCCESS -> {
+                binding.progressBar.visibility = View.GONE
+            }
+            ApiStatus.FAILED -> {
+                binding.progressBar.visibility = View.GONE
+                binding.networkErrorTextView.visibility = View.VISIBLE
+            }
         }
     }
 }
