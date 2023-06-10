@@ -2,5 +2,5 @@
 	{"imageId": "cube", "name": "Kubus", "category": "Bangun Ruang"},
 	{"imageId": "cuboid", "name": "Balok", "category": "Bangun Ruang"},
 	{"imageId": "none", "name": "Kubus", "category": "Barisan & Deret"},
-	{"imageId": "none", "name": "Kubus", "category": "Barisan & Deret"},
+	{"imageId": "none", "name": "Kubus", "category": "Barisan & Deret"}
 ]
