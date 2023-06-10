@@ -1,8 +1,13 @@
 package com.pamungkaswira.kaltika.ui.menu
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.*
+import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
@@ -10,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pamungkaswira.kaltika.MainActivity
 import com.pamungkaswira.kaltika.R
 import com.pamungkaswira.kaltika.data.SettingsDataStore
 import com.pamungkaswira.kaltika.data.dataStore
@@ -62,6 +68,8 @@ class MenuFragment : Fragment() {
         viewModel.getStatus().observe(viewLifecycleOwner) {
             updateProgress(it)
         }
+
+        viewModel.scheduleUpdater(requireActivity().application)
 //        binding.openCubeImageView.setOnClickListener {
 //            it.findNavController().navigate(R.id.menuFragment_to_CubeFragment)
 //        }
@@ -147,11 +155,26 @@ class MenuFragment : Fragment() {
             }
             ApiStatus.SUCCESS -> {
                 binding.progressBar.visibility = View.GONE
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    requestNotificationPermission()
+                }
             }
             ApiStatus.FAILED -> {
                 binding.progressBar.visibility = View.GONE
                 binding.networkErrorTextView.visibility = View.VISIBLE
             }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun requestNotificationPermission() {
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                MainActivity.PERMISSION_REQUEST_CODE
+            )
         }
     }
 }
